@@ -1,0 +1,39 @@
+<odoo>
+    <record id="partner_ins_form_view" model="ir.ui.view">
+        <field name="name">partner.instructor</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="function" position="after">
+                <field name="instr"/>
+            </field>
+
+            <field name="category_id" position="after">
+                <field name="Session_partner"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_list_partners">
+        <field name="name">Partners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="partners_menu" name="Partners" parent="openacademy_menu" action="action_list_partners"/>
+
+    <record model="ir.actions.act_window" id="action_list_partner_domain">
+        <field name="name"></field>
+        <field name="res_model">res.partner.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="res.partner.category" id="teacher1">
+        <field name="name">Teacher/Level1</field>
+    </record>
+
+    <record model="res.partner.category" id="teacher2">
+        <field name="name">Teacher/Level2</field>
+    </record>
+
+</odoo>
