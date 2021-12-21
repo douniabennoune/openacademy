@@ -108,7 +108,7 @@
                 <field name="title"></field>
                 <field name="description"></field>
 
-                <filter name="current_user_responsible" string="Current user" domain="[('responsible_id','=','uid')]"/>
+                <filter name="current_user_responsible" string="Current user" domain="[('responsible_id','=',uid)]"/>
                 <group string="Group by">
                     <filter name="group_by_responsible_id" string="Responsible"
                             context="{'group_by':'responsible_id'}"/>
