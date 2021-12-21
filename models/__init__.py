@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from . import Course, Session
-from . import Partner
+from . import course, session
+from . import partner

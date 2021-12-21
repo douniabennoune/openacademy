@@ -15,12 +15,13 @@
     'depends': ['base'],
 
     'data': [
-        'security/security.xml',
         'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
-        'views/openacademy.xml',
-        'views/partner.xml',
+        'security/security.xml',
+        'data/data.xml',
+        'views/course_view.xml',
+        'views/session_view.xml',
+        'views/partner_view.xml',
+        'wizard/session_wizard.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -5,11 +5,11 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <field name="function" position="after">
-                <field name="instr"/>
+                <field name="is_instructor"/>
             </field>
 
             <field name="category_id" position="after">
-                <field name="Session_partner"/>
+                <field name="session_partners"/>
             </field>
         </field>
     </record>
@@ -28,12 +28,6 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <record model="res.partner.category" id="teacher1">
-        <field name="name">Teacher/Level1</field>
-    </record>
 
-    <record model="res.partner.category" id="teacher2">
-        <field name="name">Teacher/Level2</field>
-    </record>
 
 </odoo>

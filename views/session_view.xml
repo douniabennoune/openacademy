@@ -1,82 +1,28 @@
 <odoo>
-
-    <!-- Course -->
-    <record id="course_form" model="ir.ui.view">
-        <field name="name">course.form</field>
-        <field name="model">openacademy.course</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                <group>
-                    <field name="name"/>
-                    <field name="responsible_id"/>
-                    <notebook>
-                        <page string="Description">
-                            <field name="description"/>
-                        </page>
-                        <page string="Sessions">
-                            <field name="session_ids">
-                                <tree string="registered sessions">
-                                    <field name="name"/>
-                                    <field name="instructor_id"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="course_tree_view">
-        <field name="name">course.tree</field>
-        <field name="model">openacademy.course</field>
-        <field name="arch" type="xml">
-            <tree string="Course Tree">
-                <field name="name"/>
-                <field name="responsible_id"/>
-            </tree>
-        </field>
-    </record>
-
-    <record model="ir.actions.act_window" id="action_list_courses">
-        <field name="name">Courses</field>
-        <field name="res_model">openacademy.course</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{'search_default_current_user_responsible':1}</field>
-    </record>
-
-    <menuitem id="main_openacademy_menu" name="Open Academy"/>
-    <menuitem id="openacademy_menu" name="Open Academy" parent="main_openacademy_menu"/>
-    <menuitem id="courses_menu" name="Courses" parent="openacademy_menu" action="action_list_courses"/>
-
-    <!-- session -->
-
     <record id="session_form" model="ir.ui.view">
         <field name="name">session.form</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                <group>
-                    <group string="General Information">
-                        <field name="name"/>
-                        <field name="course_id"/>
-                        <field name="instructor_id"/>
-                        <field name="active"/>
-                    </group>
-                    <group string="Schedule">
-                        <field name="start_date"/>
-                        <field name="duration"/>
-                        <field name="number_of_seats"/>
-                        <field name="taken_seats" widget="progressbar"/>
-                        <field name="end_date"/>
+                    <group>
+                        <group string="General Information">
+                            <field name="name"/>
+                            <field name="course_id"/>
+                            <field name="instructor_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Schedule">
+                            <field name="start_date"/>
+                            <field name="duration"/>
+                            <field name="number_of_seats"/>
+                            <field name="taken_seats" widget="progressbar"/>
+                            <field name="end_date"/>
 
+                        </group>
                     </group>
-                </group>
-                <label for="attendees_ids"/>
-                <field name="attendees_ids"/>
+                    <label for="attendees_ids"/>
+                    <field name="attendees_ids"/>
                 </sheet>
             </form>
         </field>
@@ -95,15 +41,6 @@
         </field>
     </record>
 
-
-    <record model="ir.actions.act_window" id="action_list_session">
-        <field name="name">Sessions</field>
-        <field name="res_model">openacademy.session</field>
-        <field name="view_mode">tree,form,gantt,graph,kanban,calendar</field>
-    </record>
-
-    <menuitem id="session_menu" name="Sessions" parent="openacademy_menu" action="action_list_session"/>
-
     <record id="course_search_view" model="ir.ui.view">
         <field name="name">course.search</field>
         <field name="model">openacademy.course</field>
@@ -121,11 +58,12 @@
         </field>
     </record>
 
-     <record id="session_calendar_view" model="ir.ui.view">
+    <record id="session_calendar_view" model="ir.ui.view">
         <field name="name">session.calendar</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <calendar string="Open academy events" date_start="start_date" color="course_id" quick_add="false" mode="month">
+            <calendar string="Open academy events" date_start="start_date" color="course_id" quick_add="false"
+                      mode="month">
                 <field name="name"/>
             </calendar>
         </field>
@@ -140,7 +78,6 @@
         </field>
     </record>
 
-
     <record model="ir.ui.view" id="session_graph_view">
         <field name="name">session.graph</field>
         <field name="model">openacademy.session</field>
@@ -151,7 +88,6 @@
             </graph>
         </field>
     </record>
-
 
     <record model="ir.ui.view" id="session_kanban_view">
         <field name="name">session.kanban</field>
@@ -177,9 +113,15 @@
         </field>
     </record>
 
-    <menuitem id="menu_add_attendees" name="Adding attendees" parent="main_openacademy_menu" action="session_wizard">
 
-    </menuitem>
+    <record model="ir.actions.act_window" id="action_list_session">
+        <field name="name">Sessions</field>
+        <field name="res_model">openacademy.session</field>
+        <field name="view_mode">tree,form,gantt,graph,kanban,calendar</field>
+    </record>
+
+    <menuitem id="session_menu" name="Sessions" parent="openacademy_menu" action="action_list_session"/>
+    <menuitem id="menu_add_attendees" name="Adding attendees" parent="main_openacademy_menu" action="session_wizard"/>
 
 
 </odoo>
