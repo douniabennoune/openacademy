@@ -21,6 +21,7 @@
         'views/templates.xml',
         'views/openacademy.xml',
         'views/partner.xml',
+        'wizard/session_wizard.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
