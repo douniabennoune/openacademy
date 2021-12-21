@@ -96,7 +96,7 @@
     <record model="ir.actions.act_window" id="action_list_session">
         <field name="name">Sessions</field>
         <field name="res_model">session</field>
-        <field name="view_mode">tree,form,gantt,graph,kanban</field>
+        <field name="view_mode">tree,form,gantt,graph,kanban,calendar</field>
     </record>
 
     <menuitem id="session_menu" name="Sessions" parent="openacademy_menu" action="action_list_session"/>
@@ -115,6 +115,16 @@
                             context="{'group_by':'responsible_id'}"/>
                 </group>
             </search>
+        </field>
+    </record>
+    
+    <record id="session_calendar_view" model="ir.ui.view">
+        <field name="name">session.calendar</field>
+        <field name="model">session</field>
+        <field name="arch" type="xml">
+            <calendar string="Open academy events" date_start="start_date" color="course_id" quick_add="false" mode="month">
+                <field name="name"/>
+            </calendar>
         </field>
     </record>
 
