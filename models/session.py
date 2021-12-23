@@ -31,7 +31,10 @@ class Session(models.Model):
     @api.depends('start_date', 'duration')
     def _compute_end_date(self):
         for record in self:
-            record.end_date = record.start_date + timedelta(days=record.duration)
+            if self.duration < 0:
+                raise ValidationError("The duration should not be negative")
+            else:
+                record.end_date = record.start_date + timedelta(days=record.duration)
 
     @api.depends('attendees_ids')
     def _get_attendees_number(self):
@@ -40,19 +43,14 @@ class Session(models.Model):
 
     @api.onchange('number_of_seats', 'attendees_ids')
     def _onchange_number_of_seats(self):
+        res = {}
         if self.number_of_seats < 0:
-            return {
-                'warning': {
-                    'title': "Error",
-                    'message': 'Number of seats cannot be negative', },
-            }
+            res['warning'] = {'title': "Error",'message': 'Number of seats cannot be negative'}
+            return res
 
         if len(self.attendees_ids) > self.number_of_seats:
-            return {
-                'warning': {
-                    'title': "Error",
-                    'message': 'Number of attendees is bigger than the number of seats'},
-            }
+            res['warning'] = {'title': "Error", 'message': 'Number of attendees is bigger than the number of seats'}
+            return res
 
     @api.constrains('instructor_id', 'attendees_ids')
     def _check_presence_instructor(self):
